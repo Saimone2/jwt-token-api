@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  app:
+    container_name: jwt-application
+    image: 'docker-spring-boot-postgres:latest'
+    build:
+      context: ./
+    depends_on:
+      - postgresql
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgresql:5432/jwt_security
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=admin
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+    ports:
+      - "8080:8080"
+    restart: no
+
+  postgresql:
+    image: 'postgres:13.1-alpine'
+    container_name: postgresql
+    environment:
+      - POSTGRES_DB=jwt_security
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=admin
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
