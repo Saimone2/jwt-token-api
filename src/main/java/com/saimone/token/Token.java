@@ -13,12 +13,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity
 public class Token {
-
     @Id
     @GeneratedValue
     public Long id;
 
-    @Column(unique = true)
+    @Column(name = "token", unique = true)
     public String token;
 
     @Enumerated(EnumType.STRING)

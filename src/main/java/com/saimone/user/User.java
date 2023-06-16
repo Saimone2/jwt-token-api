@@ -24,12 +24,16 @@ public class User implements UserDetails {
     @GeneratedValue
     private Long id;
 
+    @Column(name = "firstname", nullable = false)
     private String firstname;
 
+    @Column(name = "lastname", nullable = false)
     private String lastname;
 
+    @Column(name = "email", unique = true, nullable = false)
     private String email;
 
+    @Column(name = "password", nullable = false)
     private String password;
 
     @Enumerated(EnumType.STRING)
