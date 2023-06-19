@@ -41,8 +41,8 @@ public class AuthenticationService {
                 .build();
 
         var savedUser = userRepository.save(user);
-        var jwtToken = jwtService.generateToken(user);
-        var refreshToken = jwtService.generateRefreshToken(user);
+        var jwtToken = jwtService.generateToken(savedUser);
+        var refreshToken = jwtService.generateRefreshToken(savedUser);
         saveUserToken(savedUser, jwtToken);
 
         log.info("IN register - user: {} successfully registered with a token: {}", savedUser, jwtToken);
